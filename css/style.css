@@ -179,6 +179,7 @@ body {
 	width: -webkit-calc(33% - 1em);
 	width: calc(33% - 1em);
 	margin-bottom: 30px;
+	margin-right: 20px;
 }
 
 .about i, .contact i {
@@ -823,8 +824,39 @@ textarea.form-control {	height:135px; }
 	background-color:#000;
 }
 
-#google-map { height: 435px; }
+.comment-block{
+	/*background-color: rgba(0, 64, 255,0.3);*/
+	margin-bottom: 0;
+}
 
+.comment-block textarea{
+	width: 80%;
+	font-style: italic;
+	margin-top: 5px;
+	margin-left: 5px; 
+	color: rgb(128, 128, 128);
+}
+
+.comment-block button{
+	position: relative;
+	margin-bottom: 5px;
+	margin-left: 10px;
+	
+}
+
+.comment-author{
+	font-weight: bold;
+	color: rgb(128, 128, 128);
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+.comment-msg{
+	margin-left: 5px;
+	color:rgb(128, 128, 128);
+	border-bottom: 1px solid rgba(128, 128, 128,0.6);
+	margin-right: 5px;
+}
 .modal-dialog {
 	width: 300px;
 	margin: 80px auto;
