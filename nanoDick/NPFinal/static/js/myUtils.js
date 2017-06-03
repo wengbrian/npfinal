@@ -44,7 +44,13 @@ function upload(){
 		}
 	});   
 }
-
+function openModal(){
+	$('#preview').attr('src', "");
+	document.getElementById('id01').style.display='block'
+}
+function closeModal(){
+	document.getElementById('id01').style.display='none';
+}
 $("document").ready(function(){
     $("#my_file").change(function() {
 		if (this.files && this.files[0]) {

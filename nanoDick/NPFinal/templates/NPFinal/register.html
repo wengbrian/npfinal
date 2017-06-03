@@ -49,19 +49,17 @@ http://www.templatemo.com/tm-478-accord
                             </div>  
                              <div class="menu-container">
                                  <div class="block-keep-ratio  block-keep-ratio-2-1  block-width-full  contact-main" style="background-color:#0059b3">
-									<form>
-										<input type="file" id="my_file" accept="image/*" style="display:none">
-										<label style="cursor:pointer;" href="" onclick="document.getElementById('id01').style.display='block'" class="main-menu-link contact block-keep-ratio__content flexbox-center">
-											<h3>Upload image</h3>
-										</label>
-										<input type="submit" value="Submit" style="display:none">
-									</form>
+									<input type="file" id="my_file" accept="image/*" style="display:none">
+									<label style="cursor:pointer;" href="" onclick="openModal()" class="main-menu-link contact block-keep-ratio__content flexbox-center">
+										<h3>Upload image</h3>
+									</label>
+									<input type="submit" value="Submit" style="display:none">
+									
 									<!-- The Modal -->
 									<div id="id01" class="modal">
-										<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-
+										
 										<!-- Modal Content -->
-										<form class="modal-content animate">
+										<div class="modal-content animate">
 											<div class="container">
 												<button type="button" onclick="document.getElementById('my_file').click()" class="cancelbtn">Upload</button>
 											</div>
@@ -71,14 +69,14 @@ http://www.templatemo.com/tm-478-accord
 
 											<div class="container">
 												<label><b>tag</b></label>
-												<input type="text" placeholder="Enter tags (start with #)" name="uname">
-												<button type="submit" onclick="upload()">summit</button>
+												<input type="text" placeholder="Enter tags (start with #)">
+												<button type="submit" onclick="upload();closeModal();">summit</button>
 											</div>
 
 											<div class="container" style="background-color:#f1f1f1">
-												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+												<button type="button" onclick="closeModal()" class="cancelbtn">Cancel</button>
 											</div>
-										</form>
+										</div>
 									</div>
 									<!-- modal end -->
                                 </div>                           
