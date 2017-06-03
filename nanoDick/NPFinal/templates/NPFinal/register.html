@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'font-awesome/css/font-awesome.min.css' %}">    
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/modal.css' %}">
 <!--
 Accord Template
 http://www.templatemo.com/tm-478-accord
@@ -48,13 +49,38 @@ http://www.templatemo.com/tm-478-accord
                             </div>  
                              <div class="menu-container">
                                  <div class="block-keep-ratio  block-keep-ratio-2-1  block-width-full  contact-main" style="background-color:#0059b3">
-									<form action="/action_page.php" method="post">
-										<input type="file" id="my_file" style="display:none">
-										<a href="#" onclick="document.getElementById('my_file').click();" class="main-menu-link contact block-keep-ratio__content flexbox-center">
+									<form>
+										<input type="file" id="my_file" accept="image/*" style="display:none">
+										<label style="cursor:pointer;" href="" onclick="document.getElementById('id01').style.display='block'" class="main-menu-link contact block-keep-ratio__content flexbox-center">
 											<h3>Upload image</h3>
-										</a>
-										<input type="submit" value="Submit">
+										</label>
+										<input type="submit" value="Submit" style="display:none">
 									</form>
+									<!-- The Modal -->
+									<div id="id01" class="modal">
+										<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+										<!-- Modal Content -->
+										<form class="modal-content animate">
+											<div class="container">
+												<button type="button" onclick="document.getElementById('my_file').click()" class="cancelbtn">Upload</button>
+											</div>
+											<div class="imgcontainer">
+												<img src="" id="preview">
+											</div>
+
+											<div class="container">
+												<label><b>tag</b></label>
+												<input type="text" placeholder="Enter tags (start with #)" name="uname">
+												<button type="submit" onclick="upload()">summit</button>
+											</div>
+
+											<div class="container" style="background-color:#f1f1f1">
+												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+											</div>
+										</form>
+									</div>
+									<!-- modal end -->
                                 </div>                           
                             </div> 
    
@@ -106,12 +132,11 @@ http://www.templatemo.com/tm-478-accord
                     <p class="copyright">Copyright © 2016 Company Name</p>
                 </div>    
             </footer>  <!-- .row -->   
-
         </div> <!-- .container -->
     </div> <!-- .main-body -->
-
-    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+	<script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-   
+	<script src="{% static 'js/myUtils.js' %}"></script>
+    
 </body>
 </html>

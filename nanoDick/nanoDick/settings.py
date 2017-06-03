@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'NPFinal',
+    'NPFinal',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +119,5 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+IMAGES_ROOT = os.path.join(BASE_DIR,'NPFinal','static','images')+os.path.sep
+
