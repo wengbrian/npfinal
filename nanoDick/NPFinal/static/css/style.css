@@ -109,6 +109,10 @@ body {
     transition: width 0.4s ease-in-out;
 }
 
+/*.cancelbtn{
+	width: 70%;
+}*/
+
 /* When the input field gets focus, change its width to 100% */
 .search[type=text]:focus {
     width: 100%;
