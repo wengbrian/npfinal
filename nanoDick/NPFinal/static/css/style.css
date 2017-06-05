@@ -883,6 +883,12 @@ textarea.form-control {	height:135px; }
 .box img { width: 100%;	}
 .about_box_line { max-width: 410px; }
 
+.fill_form{
+	width: 100%;
+	padding: 5px;
+	display: inline-block;
+}
+
 @media screen and (max-width: 1199px) and (min-width: 992px) {
 	
 	.banner-main-home {	padding-bottom: 80px; }

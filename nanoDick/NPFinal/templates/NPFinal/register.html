@@ -100,21 +100,27 @@ http://www.templatemo.com/tm-478-accord
                             <div class="row">  
                                 <div class="col-sm-12 col-md-6 contact_left">        
                                     <form class="form-horizontal" method="post" action="#">
-          
-                                        <div class="form-group">                                    
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="NAME..." value="">                                    
+                                      {% csrf_token %}
+                                      {{ form }}
+                                     <!--  <input type="submit" value="Submit"/>
+                                        <div class="form-group">    
+                                            <label for="reg_name">Enter your name: </label>                                 
+                                            <input type="text" class="form-control" id="name" name="name" value="">                                    
                                         </div>
           
                                         <div class="form-group">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="EMAIL..." value="">      
+                                            <label for="reg_mail">Enter your email: </label>
+                                            <input type="email" class="form-control" id="email" name="email" value="">      
                                         </div>
                                          <div class="form-group">
-                                            <input type="password" class="form-control"  placeholder="password" value="">      
+                                            <label for="reg_pwd">Password: </label>
+                                            <input type="password" class="form-control" value="">      
                                         </div> 
                                             
                                         <div class="form-group">
                                             <input id="submit" name="submit" type="submit" value="Send" class="btn view_more btn-register">
-                                        </div>            
+                                        </div>            --> 
+                                        <input id="submit" name="submit" type="submit" value="Send" class="btn view_more btn-register">
                                     
                                     </form>    
                                 </div> <!-- .contact-left -->

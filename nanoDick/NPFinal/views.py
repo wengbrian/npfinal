@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
 from .models import Post
+from .forms import *
 # Create your views here.
 def post_list(request):
     srcs = ['/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg', '/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg']
@@ -12,13 +13,25 @@ def post_list(request):
 def login(request):
     srcs = ['/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg', '/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg']
     # posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'NPFinal/login.html', {})
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            return HttpResponse('/thanks')
+    else:
+        form = LoginForm()           
+    return render(request, 'NPFinal/login.html', {'form': form})
 
 # return register html
 def register(request):
     srcs = ['/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg', '/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg']
     # posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'NPFinal/register.html', {})
+    if request.method == 'POST':
+        form = RegForm(request.POST)
+        if form.is_valid():
+            return HttpResponse('/thanks')
+    else:
+        form = RegForm()        
+    return render(request, 'NPFinal/register.html', {'form': form})
 
 def upload(request):
     if request.method == 'POST':
