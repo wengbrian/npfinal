@@ -28,6 +28,7 @@ def register(request):
     if request.method == 'POST':
         form = RegForm(request.POST)
         if form.is_valid():
+            form.save()
             return HttpResponse('/thanks')
     else:
         form = RegForm()        
