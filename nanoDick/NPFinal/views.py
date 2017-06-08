@@ -3,6 +3,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from .models import Post
 from .forms import *
+from django.contrib import messages
 # Create your views here.
 def post_list(request):
     srcs = ['/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg', '/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg']
@@ -15,6 +16,10 @@ def login(request):
     # posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     if request.method == 'POST':
         form = LoginForm(request.POST)
+        m = form['account'].value()
+        p = form['password'].value()
+        if not Reg.objects.filter(mail=m,password=p).exists():
+            return render(request, 'NPFinal/login_error.html',{})
         if form.is_valid():
             return HttpResponse('/thanks')
     else:

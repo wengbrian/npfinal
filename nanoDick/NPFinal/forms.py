@@ -4,15 +4,7 @@ from django.utils.safestring import mark_safe
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
-#class RegForm(forms.Form):
- #   account = forms.EmailField(label=mark_safe('Email'), widget=forms.TextInput(attrs={'class':'fill_form'}))
-  #  name = forms.CharField(label='Name',widget=forms.TextInput(attrs={'class':'fill_form'}))
-   # password = forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'fill_form'}), min_length=6)
-
-class LoginForm(forms.Form):
-	account = forms.EmailField(label=mark_safe('Email'), widget=forms.TextInput(attrs={'class':'fill_form'}))	
-	password = forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'fill_form'}), min_length=6)
-
+        
 class Reg(models.Model):
     def valid_mail(value):
         #Reg.objects
@@ -55,3 +47,19 @@ class RegForm(ModelForm):
             'password': forms.PasswordInput(attrs={'class':'fill_form'}),
         }
 
+class LoginForm(forms.Form):
+    def valid_account(value):
+        if not Reg.objects.filter(mail=value).exists():
+            raise ValidationError(
+                 _("You didn't register")   
+                    )
+        return value  
+    #def valid_pwd(value):
+     #   pwd = Reg.objects.filter(mail = m, password=value).exists()
+      #  if not pwd:
+       #     raise ValidationError(
+        #        _("wrong password %s") % m
+         #       )
+       # return value    
+    account = forms.EmailField(validators=[valid_account],label=mark_safe('Email'), widget=forms.TextInput(attrs={'class':'fill_form'}))
+    password = forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'fill_form'}))
