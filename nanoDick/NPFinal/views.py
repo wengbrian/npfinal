@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import *
 from .models import Post
 from .forms import *
 from django.contrib import messages
+import json
+
 # Create your views here.
 def post_list(request):
     srcs = ['/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg', '/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg']
@@ -12,16 +14,19 @@ def post_list(request):
 
 # return login html
 def login(request):
-    srcs = ['/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg', '/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg']
+    # srcs = ['/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg', '/static/images/home-img-2.jpg', '/static/images/home-img-3.jpg']
     # posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         m = form['account'].value()
         p = form['password'].value()
-        if not Reg.objects.filter(mail=m,password=p).exists():
-            return render(request, 'NPFinal/login_error.html',{})
+        user = Reg.objects.filter(mail=m)
+        if not user:
+            return render(request, 'NPFinal/login_redirect.html', {'msg':'user not exist'})
+        if not user['password'] == p:
+            return render(request, 'NPFinal/login_redirect.html', {'msg':'oops, wrong password'})
         if form.is_valid():
-            return HttpResponse('/thanks')
+            return render(request, 'NPFinal/login_redirect.html', {'msg':'login successfully'})
     else:
         form = LoginForm()           
     return render(request, 'NPFinal/login.html', {'form': form})
@@ -34,7 +39,9 @@ def register(request):
         form = RegForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('/thanks')
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=301)
     else:
         form = RegForm()        
     return render(request, 'NPFinal/register.html', {'form': form})
@@ -60,7 +67,13 @@ def upload(request):
         return HttpResponse(status=200)
 
 def post(request):
-    return render(request, 'NPFinal/demo.html', {})
+    return render(request, 'NPFinal/demo.html', {'src': '/static/images/home-img-3.jpg'})
+
+def base(request):
+    return render(request, 'NPFinal/base.html', {})
+	
+def login_redirect(request):
+    return render(request, 'NPFinal/login_redirect.html',{})
 
 
 
